@@ -1,23 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Monoton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
 
 
+:root {
+  width: 100%;
+  
+}
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
-#root{
+body{
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
- /* background-image:url(./assets/tic-tac-toe-bg.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  */
-  font-family: 'Anton', sans-serif;
+  min-height: 100vh;
+  font-family: 'Lobster Two', cursive;
   color: white;
   background-color: rgba(0,0,0,.5);
   overflow: hidden;
@@ -47,15 +46,25 @@ header{
   text-align: center;
   font-family: 'Monoton', cursive;
   color: #fb5959;
-  letter-spacing: 1.14px;
-  font-size: 1.6rem;
+}
+header h1{
+  letter-spacing: .54rem;
+  font-size: 3rem;
+  line-height: 4rem;
+}
+
+header h3{
+  letter-spacing: .30rem;
+  font-size: 1.8rem;
+  line-height: 1.8rem;
 }
 .board-container{
   width: 100%;
+  padding: 1em 0;
 }
 
 .squares{
-  padding: 1rem 0;
+  padding: 1rem ;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -72,6 +81,7 @@ header{
   background: none;
   justify-content: center;
   border: 2px solid white;
+  font-size: 1rem;
 }
 .squares button img{
   width: 100%;
@@ -95,6 +105,7 @@ header{
 .contestant-score{
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 1rem 0;
   justify-content: space-around;
@@ -104,34 +115,71 @@ header{
   margin: 0 5px 0 0;
 }
 .new-game-btn{ 
-  max-width: 100px;
-  width: 33%;
+  max-width: 150px;
+  width: 40%;
   margin: 0.75rem;
   padding: 0.75rem;
+  font-size: 0.8rem;
   background: none;
   border:none;
   background-color: #fb5959;;
   color: #ffffff;
+  font-family: 'Monoton', cursive;
 }
 
 .winner-container{
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   letter-spacing: 1.1px;
 }
 
-@media (max-width: 426px) {
+@media (max-width: 521px) {
 
-  header{
-    font-size: 1.4rem;
+  header h1{
+    letter-spacing: 0.4rem;
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+  
+  header h3{
+    letter-spacing: .24rem;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
   }
   .contestant-score{
-    font-size: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    letter-spacing: .2rem;
   }
   .squares button img{
     transform: scale(1.5) rotate(965deg) rotate3d(1, 1, 1, 45deg);
   }
+  .new-game-btn{
+    font-size: .65rem;
+  }
+}
+@media (min-width: 522px) and (max-width: 1024px) {
+
+  
+  header h1{
+    letter-spacing: 0.6rem;
+    font-size: 2.2rem;
+    line-height: 3.5rem;
+  }
+  
+  header h3{
+    letter-spacing: .44rem;
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+  }
+  .contestant-score{
+    font-size: 1.2rem;
+    line-height: 1.4rem;
+    letter-spacing: .2rem;
+  }
+
 }
 
 /*

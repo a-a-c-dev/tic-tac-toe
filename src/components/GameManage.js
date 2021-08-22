@@ -5,10 +5,12 @@ const GameManage = ({score,turn,initializeGame}) => {
     return (
         <div className="game-manage" >
             <div className="contestant-score">
-                <h3>Total score</h3> <p>{`X:${score.x} Circle:${score.o}`}</p>
-                <br/>
+                <h3>Total score:</h3> 
                 <p>
-                    { "Next Player: " + (turn ? "X" : "O")}
+                    {`X:${score.x} Circle:${score.o}`}
+                </p>
+                <p>
+                    { ` Next Player:  ${(turn ? "X" : "O")} `}
                 </p>
             </div>
             
