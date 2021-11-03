@@ -2,7 +2,7 @@ import React from 'react';
 import circleIcon from '../assets/circle.svg';
 import xIcon from '../assets/x-icon.svg';
 
-const Square = ({squareDet,squareClicked}) => {
+export const Square = React.memo(({squareDet,squareClicked}) => {
     return(
         <>
             <button  onClick={squareClicked} >
@@ -10,7 +10,5 @@ const Square = ({squareDet,squareClicked}) => {
             </button>
         </>
     )
-};
+});
 
-
-export default Square;

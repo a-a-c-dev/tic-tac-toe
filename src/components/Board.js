@@ -1,9 +1,9 @@
-import React,{useState, useEffect} from 'react';
-import Square from './Square';
-import GameManage  from './GameManage';
-import  Winner  from './Winner';
+import React,{useState, useEffect,useCallback} from 'react';
+import {Squares} from './Squares';
+import {GameManage}  from './GameManage';
+import  {Winner}  from './Winner';
 
-const Board = () => {
+const Board =React.memo(() => {
     const[squares, setSquares] = useState(Array(9).fill(null))
     const [score,setScore] = useState({
       x:0,
@@ -12,7 +12,7 @@ const Board = () => {
     const [isGameOver,setIsGameOver] = useState(false)
     const [turnCounter, setTurnCounter] = useState(1)
     const [turn, setTurn] = useState(true);
-    const  calculateWinner = squares => {
+    const  calculateWinner = useCallback(squares => {
         const possibilities = [
           [0, 1, 2],
           [3, 4, 5],
@@ -30,7 +30,7 @@ const Board = () => {
           }
         }
         return null;
-    }
+    },[squares])
     const winner = calculateWinner(squares);
     const squareClicked = (event,squareIndex) => {
         event.preventDefault();
@@ -39,14 +39,12 @@ const Board = () => {
         copySquares[squareIndex]= turn?"x":'O'
         setSquares(copySquares);
         setTurn(!turn);
-        console.log(turnCounter)
     }
     const initializeGame = () =>{
         setSquares(Array(9).fill(null))
         setIsGameOver(false);
         setTurnCounter(1);
     }
-
     useEffect((()=>{
       setTurnCounter(previousCounter=> previousCounter+1)
       if(turnCounter>9){
@@ -65,16 +63,10 @@ const Board = () => {
                 : 
                   <Winner score={score} winner={winner} turn={turn} initializeGame={initializeGame}/>
                 }
-                <div className="squares">    
-                      {squares.map((square,squareIndex)=>{
-                      return (
-                              <Square key={squareIndex}  squareDet={square} squareClicked={event=>squareClicked(event,squareIndex) }/>
-                              )
-                      })}
-                </div>
+                <Squares squareClicked={squareClicked} squares={squares}/>
         </div>
     )
-}
+})
 
 
 export default Board;

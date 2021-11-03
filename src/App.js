@@ -1,6 +1,6 @@
 import {Header} from './components/Header';
 import Board from './components/Board';
-import bgImg from './assets/tic-tac-toe-bg.jpg';
+import bgImg from './assets/tic-tac-toe-bg-memo.jpg';
 import './App.css'
 
 
