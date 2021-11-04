@@ -1,8 +1,6 @@
 import React from "react";
 import {Square} from './Square';
 
-
-
 export const Squares = React.memo(({squareClicked, squares}) => {
     return(
         <div className="squares">    

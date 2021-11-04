@@ -1,4 +1,4 @@
-import React,{useState, useEffect,useCallback} from 'react';
+import React,{useState, useEffect,useCallback,useMemo} from 'react';
 import {Squares} from './Squares';
 import {GameManage}  from './GameManage';
 import  {Winner}  from './Winner';
@@ -31,7 +31,7 @@ const Board =React.memo(() => {
         }
         return null;
     },[squares])
-    const winner = calculateWinner(squares);
+    const winner =useMemo(()=>calculateWinner(squares),[squares])
     const squareClicked = (event,squareIndex) => {
         event.preventDefault();
         const copySquares = [...squares];
