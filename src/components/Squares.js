@@ -1,7 +1,7 @@
 import React from "react";
 import {Square} from './Square';
 
-export const Squares = React.memo(({squareClicked, squares}) => {
+export const Squares = ({squareClicked, squares}) => {
     return(
         <div className="squares">    
             {squares.map((square,squareIndex)=>{
@@ -11,4 +11,4 @@ export const Squares = React.memo(({squareClicked, squares}) => {
             })}
         </div>
     )
-})
+}

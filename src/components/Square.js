@@ -1,14 +1,12 @@
 import React from 'react';
-import circleIcon from '../assets/circle.svg';
-import xIcon from '../assets/x-icon.svg';
+import { SquareIcon } from './SquareIcon';
 
-export const Square = React.memo(({squareDet,squareClicked}) => {
+export const Square =({squareDet,squareClicked}) => {
     return(
         <>
             <button  onClick={squareClicked} >
-                {squareDet==='x'?<img alt="x" className={squareDet===null?'not-acitve':' active'} src={xIcon}/>:<img alt="o" className={squareDet===null?'not-active':' active'} src={circleIcon}/>}
+                <SquareIcon squareDet={squareDet}/>
             </button>
         </>
     )
-});
-
+};

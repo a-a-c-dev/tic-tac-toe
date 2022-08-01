@@ -1,9 +1,28 @@
 import React,{useState, useEffect,useCallback,useMemo} from 'react';
 import {Squares} from './Squares';
-import {GameManage}  from './GameManage';
-import  {Winner}  from './Winner';
+import {BoardContent}  from './BoardContent';
 
-const Board =React.memo(() => {
+const  calculateWinner =(squares => {
+  const possibilities = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let index = 0; index < possibilities.length; index++) {
+    const [a, b, c] = possibilities[index];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return  squares[a] ;            
+    }
+  }
+  return null;
+})
+
+const Board = () => {
     const[squares, setSquares] = useState(Array(9).fill(null))
     const [score,setScore] = useState({
       x:0,
@@ -12,26 +31,8 @@ const Board =React.memo(() => {
     const [isGameOver,setIsGameOver] = useState(false)
     const [turnCounter, setTurnCounter] = useState(1)
     const [turn, setTurn] = useState(true);
-    const  calculateWinner = useCallback(squares => {
-        const possibilities = [
-          [0, 1, 2],
-          [3, 4, 5],
-          [6, 7, 8],
-          [0, 3, 6],
-          [1, 4, 7],
-          [2, 5, 8],
-          [0, 4, 8],
-          [2, 4, 6],
-        ];
-        for (let index = 0; index < possibilities.length; index++) {
-          const [a, b, c] = possibilities[index];
-          if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return  squares[a] ;            
-          }
-        }
-        return null;
-    },[squares])
-    const winner =useMemo(()=>calculateWinner(squares),[squares])
+  
+    const winner = useMemo(()=> calculateWinner(squares),[squares])
     const squareClicked = (event,squareIndex) => {
         event.preventDefault();
         const copySquares = [...squares];
@@ -56,17 +57,12 @@ const Board =React.memo(() => {
       !turn?setScore(prevScore=> ({...prevScore,x:prevScore.x+1})):setScore(prevScore=> ({...prevScore,o:prevScore.o+1}))
     },[winner])
     return (
-        <div className="board-container">
-                {!isGameOver  && !winner
-                ?       
-                  <GameManage score={score} winner={winner} turn={turn} initializeGame={initializeGame}/>
-                : 
-                  <Winner score={score} winner={winner} turn={turn} initializeGame={initializeGame}/>
-                }
+        <div className={winner?"board-container win":"board-container"}>
+                <BoardContent score={score} isGameOver={isGameOver} winner={winner} turn={turn} initializeGame={initializeGame}/>
                 <Squares squareClicked={squareClicked} squares={squares}/>
         </div>
     )
-})
+}
 
 
 export default Board;
