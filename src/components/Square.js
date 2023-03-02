@@ -4,7 +4,7 @@ import { SquareIcon } from './SquareIcon';
 export const Square =({squareDet,squareClicked}) => {
     return(
         <>
-            <button  onClick={squareClicked} >
+            <button className="square"  onClick={squareClicked} >
                 <SquareIcon squareDet={squareDet}/>
             </button>
         </>

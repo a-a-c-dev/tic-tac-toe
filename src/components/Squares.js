@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useId} from "react";
 import {Square} from './Square';
 
 export const Squares = ({squareClicked, squares}) => {
@@ -6,7 +6,7 @@ export const Squares = ({squareClicked, squares}) => {
         <div className="squares">    
             {squares.map((square,squareIndex)=>{
             return (
-                        <Square key={squareIndex}  squareDet={square} squareClicked={event=>squareClicked(event,squareIndex) }/>
+                        <Square key={`${useId}-squareIndex`}  squareDet={square} squareClicked={event=>squareClicked(event,squareIndex) }/>
                     )
             })}
         </div>

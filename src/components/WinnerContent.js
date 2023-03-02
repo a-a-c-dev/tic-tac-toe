@@ -5,7 +5,6 @@ export const WinnerContent =React.memo(({turn,winner}) => {
         <div>    
             {winner?
                     <>
-                        <h2>{`The Winner is ${(!turn ? "X" : "Circle")} `}</h2>
                         <h2>
                             {`Well done ${(!turn ? "X!" : "Circle!")}`}
                         </h2>
