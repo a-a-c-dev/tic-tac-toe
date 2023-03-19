@@ -1,6 +1,11 @@
 import React from 'react';
+interface Props{
+    turn:boolean,
+    winner:string|null
 
-export const WinnerContent =React.memo(({turn,winner}) => {
+}
+
+export const WinnerContent =React.memo(({turn,winner}: Props) => {
     return(
         <div>    
             {winner?

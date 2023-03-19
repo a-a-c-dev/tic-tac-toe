@@ -1,6 +1,6 @@
 describe('Game flow', () => {
   it('simulate game play', () => {
-    cy.visit('http://localhost:3001/tic-tac-toe');
+    cy.visit('http://localhost:3000/tic-tac-toe');
     //checking for next player
     cy.findByText(/next player: x/i).should('be.visible')
 

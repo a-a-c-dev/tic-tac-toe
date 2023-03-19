@@ -2,7 +2,8 @@ import React  from "react";
 import circleIcon from '../assets/circle.svg';
 import xIcon from '../assets/x-icon.svg';
 
-export const SquareIcon = React.memo(({squareDet}) =>{
+
+export const SquareIcon = React.memo(({squareDet}:{squareDet:string|null}) =>{
  return (
             <>
                 {

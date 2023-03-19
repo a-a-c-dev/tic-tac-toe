@@ -4,7 +4,7 @@ import useLocalStorage from '../hooks/useLocalStorage'
 import {Squares} from './Squares';
 import {BoardContent}  from './BoardContent';
 
-const  calculateWinner =(squares => {
+const  calculateWinner =((squares:Array<string | null>) => {
   const possibilities = [
     [0, 1, 2],
     [3, 4, 5],
@@ -23,19 +23,23 @@ const  calculateWinner =(squares => {
   }
   return null;
 })
+interface Score{
+  x:number,
+  o:number
+}
  
 const Board = () => {
-    const[squares, setSquares] = useLocalStorage("squares",Array(9).fill(null))
-    const [score,setScore] = useLocalStorage("score",{
+    const[squares, setSquares] = useLocalStorage<Array<string | null>>("squares",Array(9).fill(null))
+    const [score,setScore] = useLocalStorage<Score>("score",{
       x:0,
       o:0
     })
   
-    const [isGameOver,setIsGameOver] = useState(false)
-    const [turn, setTurn] = useState(true);
+    const [isGameOver,setIsGameOver] = useState<boolean>(false)
+    const [turn, setTurn] = useState<boolean>(true);
   
     const winner = useMemo(()=> calculateWinner(squares),[squares])
-    const squareClicked = (event,squareIndex) => {
+    const squareClicked = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>,squareIndex:number) => {
         event.preventDefault();
         const copySquares = [...squares];
         if(winner||copySquares[squareIndex]) return ; 
